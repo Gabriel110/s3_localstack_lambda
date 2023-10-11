@@ -1,18 +1,18 @@
 ### PYENV
 Para que não aja problemas de dependenciar crie um ambiente virtual python dentro da pasta lambda:
-- *cd lambda
-- *python -m venv gabriel_lambda
-- *.\gabriel_lambda\Scripts\activate
-- *pip install -r requirements.txt
+- 1 - cd lambda
+- 2 - python -m venv gabriel_lambda
+- 3 - .\gabriel_lambda\Scripts\activate
+- 4 - pip install -r requirements.txt
 
 ### DOCKER
 Execute o dockercompose com o comando:
-- *docker-compose up
+- 1 - docker-compose up
 
 ### TERRAFORM
 Execute os comando:
-- *terraform init
-- *terraform apply -auto-approve
+- 1 - terraform init
+- 2 - terraform apply -auto-approve
 
 ### CURL
 Execute essa curl no seu navegador preferido:
