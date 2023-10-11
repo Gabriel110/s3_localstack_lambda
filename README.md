@@ -1,3 +1,10 @@
+### PYENV
+Para que não aja problemas de dependenciar crie um ambiente virtual python dentro da pasta lambda:
+- cd lambda
+- python -m venv gabriel_lambda
+- .\gabriel_lambda\Scripts\activate
+- pip install -r requirements.txt
+
 ### DOCKER
 Execute o dockercompose com o comando:
 - docker-compose up
