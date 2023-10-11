@@ -16,6 +16,7 @@ Execute os comando:
 
 ### CURL
 Execute essa curl no seu navegador preferido:
+
     curl --request PUT \
     --url 'http://s3.localhost.localstack.cloud:4566/gabriel-bucket-122345/input/arquivos?=' \
     --header 'Content-Type: text/plain' \
