@@ -1,0 +1,5 @@
+/lambda_zip/*
+.terraform.lock.hcl
+terraform.tfstate
+/.terraform/*
+*/gabriel_lambda/*
