@@ -1,12 +1,17 @@
 import logging
 import boto3
 import os
+import urllib3
 
 
 LOGGER = logging.getLogger()
 LOGGER.setLevel(logging.INFO)
 
-
+def get_google():
+  http = urllib3.PoolManager()
+  r = http.request('GET','https://www.google.com.br/?hl=pt-BR')
+  
+  print(f"STATUS_CODE{r.status}")
 
 def read_message_s3(local_path):
   global row

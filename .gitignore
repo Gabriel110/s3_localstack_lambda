@@ -3,3 +3,5 @@
 terraform.tfstate
 /.terraform/*
 */gabriel_lambda/*
+terraform.tfstate.backup
+.terraform.tfstate.lock.info
