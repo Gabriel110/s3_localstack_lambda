@@ -24,7 +24,7 @@ variable "lambda_process_bucket_topic" {
 variable "lambda_process_bucket_queue" {
   type        = string
   description = ""
-  default     = "lambda-process-bucket"
+  default     = "lambda-process-bucket_queue"
 }
 
 variable "service_domain" {
