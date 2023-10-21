@@ -1,7 +1,7 @@
 variable "lamba_name" {
   type        = string
   description = ""
-  default     = "lambda-process-gabriel"
+  default     = "lambda-process-bucket"
 }
 
 variable "region" {
@@ -12,9 +12,20 @@ variable "region" {
 variable "bucket_name" {
   type        = string
   description = ""
-  default     = "gabriel-bucket-122345"
+  default     = "file-bucket-122345"
 }
 
+variable "lambda_process_bucket_topic" {
+  type        = string
+  description = ""
+  default     = "lambda-process-bucket-topic"
+}
+
+variable "lambda_process_bucket_queue" {
+  type        = string
+  description = ""
+  default     = "lambda-process-bucket"
+}
 
 variable "service_domain" {
   type        = string
