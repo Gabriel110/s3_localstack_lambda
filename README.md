@@ -1,8 +1,9 @@
 ### Repositorio
 Esse repositorio implementa por meio das tecnologias:
- - Docker
- - Terraform
- - LocalStack
+ * Docker
+ * Terraform
+ * LocalStack
+ 
 uma lambda que tem a responsabolidade de consumir arquivos csv de um bucket S3 e enviar mensagem a um sns ligado a um sns.
 A lambda porvez não evia todo o arquivo de uma vez, ela ler pequenos blocos do arquivo e tranforma em mensagem sns.
 
