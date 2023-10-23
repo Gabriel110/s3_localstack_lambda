@@ -1,10 +1,12 @@
 import json
 import logging
 import uuid
+import os
 
 import boto3
 
 from read_s3_file import ReadFileS3
+from send_message_sns import send_message_batch_to_sns
 
 LOGGER = logging.getLogger()
 LOGGER.setLevel(logging.INFO)
@@ -19,7 +21,6 @@ def get_file_on_s3(file):
 
 
 def invoke_lambda(function_name, event):
-	print("ENVOCADA")
 	payload = json.dumps(event).encode('utf-8')
 	client = boto3.client('lambda')
 	client.invoke(
@@ -39,11 +40,13 @@ def offset_invoke_lambda(offset, file, event, context, correlation_id):
 		}
 		invoke_lambda(context.function_name, new_event)
 	else:
-		file.move_file_to_processed_folder()
+		# file.move_file_to_processed_folder()
 		return
 
 
 def handler(event, context):
+	MINIMUN_REMAINING_TIME_MS = int(os.getenv('MINIMUM_REMAINING_TIME_MS')) or 10000
+
 	for record in event['Records']:
 		bucket_name = record['s3']['bucket']['name']
 		object_key = record['s3']['object']['key']
@@ -55,7 +58,15 @@ def handler(event, context):
 		row_batch_array = get_file_on_s3(file)
 		offset_invoke_lambda(offset, file, event, context, correlation_id)
 
+		row_batch_sns_array = []
+
 		for message in row_batch_array:
-			print(message)
+			row_batch_sns_array.append(message)
+			if len(row_batch_sns_array) >= 10:
+				send_message_batch_to_sns(row_batch_sns_array, correlation_id)
+				row_batch_sns_array.clear()
+			if context.get_remaining_time_in_millis() < MINIMUN_REMAINING_TIME_MS: break
+
+		send_message_batch_to_sns(row_batch_sns_array, correlation_id)
 
 		return event

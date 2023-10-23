@@ -24,7 +24,7 @@ class ReadFileS3:
     self.body_lines = self.get_object_body_lines(self.s3_object)
 
   def get_csv_reader(self):
-    chunk_size = 1024
+    chunk_size = int(os.getenv("CHUNK_SIZE")) or 1024
     csv.register_dialect('lambda', 'excel', delimiter=';')
     return csv.DictReader(self.body_lines.iter_lines(chunk_size), fieldnames=self.get_field_names(), dialect='lambda')
 
@@ -52,7 +52,7 @@ class ReadFileS3:
       raise e
 
   def get_field_names(self):
-    return ['QuotaAmount', 'StartDate', 'OwnerName', 'Username']
+    return ['id','set_name','set_code','num_of_cards','tcg_date']
 
 
 class BodyLines:

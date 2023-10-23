@@ -5,9 +5,18 @@ resource "aws_lambda_function" "lambda_function" {
   handler          = "handler.handler"
   role             = aws_iam_role.s3_role.arn
   runtime          = "python3.8"
+  memory_size      = 512
+  timeout          = 60
 
   lifecycle {
     create_before_destroy = true
+  }
+
+  environment {
+    variables = {
+      CHUNK_SIZE = "1024"
+      MINIMUM_REMAINING_TIME_MS = "10000"
+    }
   }
 }
 
