@@ -12,6 +12,7 @@ A lambda porvez não evia todo o arquivo de uma vez, ela ler pequenos blocos do 
 </div>
 
 
+
 ### DOCKER
 Execute o dockercompose com o comando:
 - 1 - docker-compose up
